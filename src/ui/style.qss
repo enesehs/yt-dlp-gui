@@ -114,6 +114,19 @@ QPushButton#icon:hover {
     background-color: #1c1c1c;
 }
 
+QPushButton#iconRounded {
+    background-color: transparent;
+    border: 1px solid #303030;
+    border-radius: 12px;
+    color: #fafafa;
+    font-size: 15px;
+    font-weight: 600;
+}
+QPushButton#iconRounded:hover {
+    border-color: #505050;
+    background-color: #1c1c1c;
+}
+
 QProgressBar {
     border: none;
     border-radius: 4px;

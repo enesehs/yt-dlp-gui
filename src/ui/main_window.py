@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("yt-dlp-gui")
         
-        icon_path = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "img", "logo.png")
+        icon_path = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "img", "logo.ico")
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
         self.setMinimumSize(650, 700)
@@ -49,7 +49,7 @@ class MainWindow(QMainWindow):
         logo_title_row.setSpacing(10)
         
         logo_label = QLabel()
-        logo_path = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "img", "logo.png")
+        logo_path = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "img", "logo.ico")
         if os.path.exists(logo_path):
             logo_pixmap = QPixmap(logo_path)
             logo_label.setPixmap(logo_pixmap.scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
@@ -84,12 +84,13 @@ class MainWindow(QMainWindow):
         input_layout = QHBoxLayout()
         self.url_input = QLineEdit()
         self.url_input.setPlaceholderText("Paste video URL here...")
+        self.url_input.setFixedHeight(48)
         self.url_input.returnPressed.connect(self.check_link)
         
         self.btn_check = QPushButton("Fetch")
         self.btn_check.setObjectName("secondary")
         self.btn_check.setFixedWidth(90)
-        self.btn_check.setFixedHeight(45)
+        self.btn_check.setFixedHeight(48)
         self.btn_check.setCursor(Qt.PointingHandCursor)
         self.btn_check.clicked.connect(self.check_link)
 
@@ -129,10 +130,14 @@ class MainWindow(QMainWindow):
         self.location_input.setReadOnly(True)
         
         self.btn_browse = QPushButton()
-        self.btn_browse.setIcon(self.style().standardIcon(QStyle.SP_DirIcon))
-        self.btn_browse.setIconSize(QSize(24, 24))
-        self.btn_browse.setObjectName("icon")
-        self.btn_browse.setFixedSize(40, 40)
+        folder_icon_path = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "img", "folder.svg")
+        if os.path.exists(folder_icon_path):
+            self.btn_browse.setIcon(QIcon(folder_icon_path))
+        else:
+            self.btn_browse.setIcon(self.style().standardIcon(QStyle.SP_DirIcon))
+        self.btn_browse.setIconSize(QSize(22, 22))
+        self.btn_browse.setObjectName("iconRounded")
+        self.btn_browse.setFixedSize(48, 48)
         self.btn_browse.setCursor(Qt.PointingHandCursor)
         self.btn_browse.setToolTip("Browse folder")
         self.btn_browse.clicked.connect(self.browse_location)
