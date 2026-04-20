@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=yt-dlp-gui
+Comment=GUI frontend for yt-dlp
+Exec=yt-dlp-gui
+Icon=/usr/share/pixmaps/yt-dlp-gui.ico
+Categories=AudioVideo;Network;
+Terminal=false
+StartupNotify=true

@@ -1,6 +1,6 @@
 
 pkgname=yt-dlp-gui
-pkgver=r4.c32430a
+pkgver=r5.d6d0f8a
 pkgrel=1
 pkgdesc="A modern Qt6 GUI for yt-dlp"
 arch=('x86_64')
@@ -37,19 +37,13 @@ pkgver() {
 package() {
   cd "$startdir"
 
-  local snapshot_dir
-  snapshot_dir="$(mktemp -d)"
-  trap 'rm -rf "$snapshot_dir"' RETURN
-
-  git archive --format=tar HEAD | tar -xf - -C "$snapshot_dir"
-
-  if [[ ! -d "$snapshot_dir/src/ui" ]]; then
-    echo "ERROR: src/ui not found in git snapshot."
+  if [[ ! -d src/ui ]]; then
+    echo "ERROR: src/ui not found in working tree."
     exit 1
   fi
 
   install -dm755 "$pkgdir/usr/share/yt-dlp-gui"
-  cp -r "$snapshot_dir/src" "$snapshot_dir/assets" "$snapshot_dir/main.py" "$snapshot_dir/requirements.txt" "$pkgdir/usr/share/yt-dlp-gui"
+  cp -r src assets main.py requirements.txt "$pkgdir/usr/share/yt-dlp-gui"
 
   install -Dm755 /dev/stdin "$pkgdir/usr/bin/yt-dlp-gui" <<'EOF'
 #!/usr/bin/env bash
@@ -68,10 +62,10 @@ Terminal=false
 StartupNotify=true
 EOF
 
-  if [[ -f "$snapshot_dir/src/img/logo.ico" ]]; then
-    install -Dm644 "$snapshot_dir/src/img/logo.ico" "$pkgdir/usr/share/pixmaps/yt-dlp-gui.ico"
-  elif [[ -f "$snapshot_dir/assets/img/logo.ico" ]]; then
-    install -Dm644 "$snapshot_dir/assets/img/logo.ico" "$pkgdir/usr/share/pixmaps/yt-dlp-gui.ico"
+  if [[ -f src/img/logo.ico ]]; then
+    install -Dm644 src/img/logo.ico "$pkgdir/usr/share/pixmaps/yt-dlp-gui.ico"
+  elif [[ -f assets/img/logo.ico ]]; then
+    install -Dm644 assets/img/logo.ico "$pkgdir/usr/share/pixmaps/yt-dlp-gui.ico"
   else
     echo "warning: logo.ico not found in src/img or assets/img"
   fi
