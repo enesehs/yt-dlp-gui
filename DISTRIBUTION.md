@@ -12,7 +12,7 @@ This guide covers how to package the application for Windows, Linux (AppImage), 
     git add .
     git commit -m "Initial commit"
     git branch -M main
-    git remote add origin https://github.com/YOUR_USERNAME/yt-dlp-gui.git
+    git remote add origin https://github.com/enesehs/yt-dlp-gui.git
     git push -u origin main
     ```
 3.  **Releases**:
@@ -89,7 +89,7 @@ pkgver=1.0.0
 pkgrel=1
 pkgdesc="A modern GUI for yt-dlp"
 arch=('x86_64')
-url="https://github.com/YOUR_USERNAME/yt-dlp-gui"
+url="https://github.com/enesehs/yt-dlp-gui"
 license=('MIT')
 depends=('python-pyside6' 'yt-dlp' 'python-requests')
 makedepends=('git' 'python-setuptools')
