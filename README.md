@@ -57,13 +57,13 @@ chmod +x yt-dlp-gui
 #### Arch Linux (AUR)
 
 ```bash
-yay -S yt-dlp-gui-git
+yay -S yt-dlp-gui
 ```
 
 or with paru:
 
 ```bash
-paru -S yt-dlp-gui-git
+paru -S yt-dlp-gui
 ```
 
 #### From Source
